@@ -294,7 +294,7 @@ func getPattern(loc *cldrItem) string {
 // getSeparator 获取字段并列的展示格式
 func getSeparator(loc *cldrItem) string {
 	for loc != nil && loc.tag.Language != "root" {
-		if loc.localePattern != "" {
+		if loc.localeSeparator != "" {
 			return loc.localeSeparator
 		}
 		loc = loc.parent
@@ -305,7 +305,7 @@ func getSeparator(loc *cldrItem) string {
 // getKeyTypePattern 获取键值对的展示格式
 func getKeyTypePattern(loc *cldrItem) string {
 	for loc != nil && loc.tag.Language != "root" {
-		if loc.localePattern != "" {
+		if loc.localeKeyTypePattern != "" {
 			return loc.localeKeyTypePattern
 		}
 		loc = loc.parent

@@ -42,7 +42,7 @@ func TestTag(t *testing.T) {
 }
 
 func TestTagList(t *testing.T) {
-	for _, tag := range language.TagList {
+	for _, tag := range language.TagList() {
 		t.Logf("[%v]", tag)
 	}
 }
@@ -121,14 +121,14 @@ func TestOf(t *testing.T) {
 }
 
 func TestGetTagName(t *testing.T) {
-	for _, tag := range language.TagList {
+	for _, tag := range language.TagList() {
 		t.Logf("[%v]\t对应的中文名是 [%v]\t它自身名称是 [%v]",
 			tag, zhHansCN.GetTagName(tag), tag.GetTagName(tag))
 	}
 }
 
 func TestGetTagLangNameCode(t *testing.T) {
-	for _, s := range language.LanguageList {
+	for _, s := range language.LanguageList() {
 		tag := language.Of(s)
 		name, code := zhHansCN.GetTagLangNameCode(tag)
 		t.Logf("[%v]: %v, %v", s, name, code)
@@ -136,25 +136,25 @@ func TestGetTagLangNameCode(t *testing.T) {
 }
 
 func TestGetLangName(t *testing.T) {
-	for _, s := range language.LanguageList {
+	for _, s := range language.LanguageList() {
 		t.Logf("[%v]: %v", s, zhHansCN.GetLangName(s))
 	}
 }
 
 func TestGetScriptName(t *testing.T) {
-	for _, s := range language.ScriptList {
+	for _, s := range language.ScriptList() {
 		t.Logf("[%v]: %v", s, zhHansCN.GetScriptName(s))
 	}
 }
 
 func TestGetRegionName(t *testing.T) {
-	for _, s := range language.RegionList {
+	for _, s := range language.RegionList() {
 		t.Logf("[%v]: %v", s, zhHansCN.GetRegionName(s))
 	}
 }
 
 func TestGetVariantName(t *testing.T) {
-	for _, s := range language.VariantList {
+	for _, s := range language.VariantList() {
 		t.Logf("[%v]: %v", s, zhHansCN.GetVariantName(s))
 	}
 }

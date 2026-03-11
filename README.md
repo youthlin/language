@@ -41,7 +41,12 @@ type Tag struct {
 
 ```go
 zh := language.Of("zh-Hans-CN")
+
+// 获取 Tag 的显示名称
 zh.GetTagName(zh) // 简体中文（中国）
+
+// 获取 语言代码, 书写格式代码, 区域代码, 变体代码 的名称
+
 zh.GetLangName("en") // 英语
 zh.GetScriptName("Latn") // 拉丁文
 zh.GetRegionName("US") // 美国

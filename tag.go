@@ -7,13 +7,27 @@ import (
 )
 
 var (
-	// TagList 系统加载的语言标签列表
-	TagList      = []Tag{}
-	LanguageList = []string{}
-	ScriptList   = []string{}
-	RegionList   = []string{}
-	VariantList  = []string{}
+	tagList      []Tag
+	languageList []string
+	scriptList   []string
+	regionList   []string
+	variantList  []string
 )
+
+// TagList 返回系统加载的语言标签列表的副本
+func TagList() []Tag { return append([]Tag{}, tagList...) }
+
+// LanguageList 返回系统加载的语言代码列表的副本
+func LanguageList() []string { return append([]string{}, languageList...) }
+
+// ScriptList 返回系统加载的书写系统代码列表的副本
+func ScriptList() []string { return append([]string{}, scriptList...) }
+
+// RegionList 返回系统加载的区域代码列表的副本
+func RegionList() []string { return append([]string{}, regionList...) }
+
+// VariantList 返回系统加载的变体代码列表的副本
+func VariantList() []string { return append([]string{}, variantList...) }
 
 func init() {
 	var (
@@ -23,36 +37,36 @@ func init() {
 		mVariant = map[string]bool{}
 	)
 	for _, item := range cldrItems {
-		TagList = append(TagList, item.tag)
+		tagList = append(tagList, item.tag)
 		for lang := range item.languages {
 			if !mLang[lang] && !strings.Contains(lang, "-") {
 				mLang[lang] = true
-				LanguageList = append(LanguageList, lang)
+				languageList = append(languageList, lang)
 			}
 		}
 		for script := range item.scripts {
 			if !mScript[script] && !strings.Contains(script, "-") {
 				mScript[script] = true
-				ScriptList = append(ScriptList, script)
+				scriptList = append(scriptList, script)
 			}
 		}
 		for region := range item.regions {
 			if !mRegion[region] && !strings.Contains(region, "-") {
 				mRegion[region] = true
-				RegionList = append(RegionList, region)
+				regionList = append(regionList, region)
 			}
 		}
 		for variant := range item.variants {
 			if !mVariant[variant] && !strings.Contains(variant, "-") {
 				mVariant[variant] = true
-				VariantList = append(VariantList, variant)
+				variantList = append(variantList, variant)
 			}
 		}
-		sort.Strings(LanguageList)
-		sort.Strings(ScriptList)
-		sort.Strings(RegionList)
-		sort.Strings(VariantList)
 	}
+	sort.Strings(languageList)
+	sort.Strings(scriptList)
+	sort.Strings(regionList)
+	sort.Strings(variantList)
 }
 
 // Tag 语言标签
